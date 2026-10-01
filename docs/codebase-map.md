@@ -82,7 +82,7 @@
 ### Дані
 
 - **Сховище:** JSON-масиви в `app/data/*.json` через `lib/store.js`. Файл читається цілком і на `save()` перезаписується повністю. MongoDB, про яку пише `app/docs/ARCHITECTURE.md`, не використовується з листопада 2020 (`lib/legacy/mongo-migrate.js:2-3`).
-- **Дати:** рядки `YYYY-MM-DD` (`store.js:9`). ✏️ Повні ISO-мітки часу мають `orders.status_changed_at`, `orders.status_history[].at` (`orders/status.js:90-96`) і `audit.ts`. «Сьогодні» рахується в UTC всюди, крім двох місць:
+- **Дати:** рядки `YYYY-MM-DD` (`store.js:9`). ✏️ Повні ISO-мітки часу мають `orders.status_changed_at`, `orders.status_history[].at` (`orders/status.js:90-96`) і поле `ts` записів журналу аудиту (`lib/audit/index.js:121`). «Сьогодні» рахується в UTC всюди, крім двох місць:
   - `catalog/price-import.js:30-33`: там локальний час;
   - мертвий `mongo-migrate.js`: там Europe/Kiev.
 - **Гроші:** цілі копійки в полях `*_kopecks`; ПДВ зберігається як `vat_rate: 20`.
